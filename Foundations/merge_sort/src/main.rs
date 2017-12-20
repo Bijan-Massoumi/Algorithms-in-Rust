@@ -4,6 +4,8 @@ conquor algo with recurrence destrubed as so
 T(n) = 2*T(n/2) + O(n).
 */
 
+extern crate num;
+use num::Bounded;
 
 fn main() {
     let mut love: Vec<f32> = vec![8.,9.,1.,4.,10.];
@@ -12,7 +14,7 @@ fn main() {
 }
 
 
-fn merge_sort( p: usize, r: usize, array: &mut Vec<f32>) {
+fn merge_sort<T: PartialOrd + Copy + std::fmt::Debug + Bounded>( p: usize, r: usize, array: &mut Vec<T>) {
     if p < r {
         let q = (p + r)/2;
         merge_sort(p, q, array);
@@ -21,12 +23,12 @@ fn merge_sort( p: usize, r: usize, array: &mut Vec<f32>) {
     }
 }
 
-fn merge(p: usize, q: usize, r: usize, array: &mut Vec<f32>) {
+fn merge<T: PartialOrd + Copy + std::fmt::Debug + Bounded>(p: usize, q: usize, r: usize, array: &mut Vec<T>) {
     let left_size: usize = q - p;
     let right_size: usize = r - q;
 
-    let mut left: Vec<f32> = Vec::new();
-    let mut right: Vec<f32> = Vec::new();
+    let mut left: Vec<T> = Vec::new();
+    let mut right: Vec<T> = Vec::new();
 
     for i in 0..left_size {
         left.push(array[p + i]);
@@ -36,8 +38,8 @@ fn merge(p: usize, q: usize, r: usize, array: &mut Vec<f32>) {
         right.push(array[q + i]);
     }
 
-    left.push(1000000.);
-    right.push(1000000.);
+    left.push(T::max_value());
+    right.push(T::max_value());
 
     let mut i: usize = 0;
     let mut j: usize = 0;
