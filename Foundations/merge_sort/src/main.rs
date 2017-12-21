@@ -1,8 +1,6 @@
-/*
-the complexity is O(nlogn). It is a divide and
-conquor algo with recurrence destrubed as so
-T(n) = 2*T(n/2) + O(n).
-*/
+//! The complexity is O(nlogn). It is a divide and
+//! conquor algo with recurrence destrubed as so
+//! `T(n) = 2*T(n/2) + O(n)`.
 
 extern crate num;
 use num::Bounded;
