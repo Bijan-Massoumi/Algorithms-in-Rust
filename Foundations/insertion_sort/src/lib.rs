@@ -7,7 +7,7 @@ elements in the range (0, i-1) are in sorted order and consist of
 the elements that were originally in (0, i-1) when the algo started.
 */
 
-pub fn insertion_sort<T: PartialOrd + Clone>(array: &mut Vec<T>) {
+pub fn insertion_sort<T: PartialOrd + Clone>(array: &mut [T]) {
 
     if array.len() < 1 { return; }
 
@@ -28,9 +28,9 @@ pub fn insertion_sort<T: PartialOrd + Clone>(array: &mut Vec<T>) {
 
 #[test]
 fn test_insertion_sort() {
-    let mut unsorted = vec![5, 6, 3, 9, 8];
+    let mut unsorted = [5, 6, 3, 9, 8];
     insertion_sort(&mut unsorted);
-    assert_eq!(vec![3, 5, 6, 8, 9], unsorted);
+    assert_eq!([3, 5, 6, 8, 9], unsorted);
 }
 
 #[test]
